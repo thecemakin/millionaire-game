@@ -1,27 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState,useMemo } from "react";
 import "./app.css";
 import Questions from "./components/Questions";
+import Timer from "./components/Timer";
 
 
 function App() {
   
   const [questionNum, setQuestionNum] = useState(1);
-  const [timeOut, setTİmeOut] = useState(false);
-  const moneyPyramid = [
-    {id:1, reward:"$ 200"},
-    {id:2, reward:"$ 500"},
-    {id:3, reward:"$ 2.000"},
-    {id:4, reward:"$ 7.000"},
-    {id:5, reward:"$ 35.000"},
-    {id:6, reward:"$ 80.000"},
-    {id:7, reward:"$ 250.000"},
-    {id:8, reward:"$ 450.000"},
-    {id:9, reward:"$ 700.000"},
-    {id:10, reward:"$ 10.000.000"}
-    
-    ].reverse();
+  const [stop, setStop] = useState(false);
+  const [earned, setEarned] = useState("$ 0");
 
-    const data =[
+  const moneyPyramid = useMemo(() =>
+    [
+      {id:1, reward:"$ 200"},
+      {id:2, reward:"$ 500"},
+      {id:3, reward:"$ 2.000"},
+      {id:4, reward:"$ 7.000"},
+      {id:5, reward:"$ 35.000"},
+      {id:6, reward:"$ 80.000"},
+      {id:7, reward:"$ 250.000"},
+      {id:8, reward:"$ 450.000"},
+      {id:9, reward:"$ 700.000"},
+      {id:10, reward:"$ 10.000.000"}
+      
+      ].reverse()
+  ,[]);
+    const data = [
       {
         id:1,
         question:'Halk arasında "zamanla şartlar çok değişti, eski durum kalmadı" anlamında kullanılan sözde "altından çok sular aktı" denilen hangisidir?',
@@ -38,7 +42,7 @@ function App() {
         { answer:'Köprü',
           correct: true        
         }
-        ],
+        ]},{
         id:2,
         question:'Hangisi beyindeki bir bölgeye verilen addır?',
         answers:[{
@@ -54,7 +58,7 @@ function App() {
         { answer:'Omurilik Brokolisi',
           correct: false       
         }
-        ],
+        ]},{
         id:3,
         question:'Genellikle hangisi bilenir??',
         answers:[{
@@ -70,7 +74,7 @@ function App() {
         { answer:'Kaşık',
           correct: false       
         }
-        ],
+        ]},{
         id:4,
         question:'Üçün üç katından, ikinin iki katı çıkarılırsa sonuç ne olur?',
         answers:[{
@@ -86,7 +90,7 @@ function App() {
         { answer:'23',
           correct: false       
         }
-        ],
+        ]},{
         id:5,
         question:'1924 Anayasasında ve 1961 Anayasasında Türkiyenin başkenti hangisi olarak belirtilmiştir?',
         answers:[{
@@ -102,7 +106,7 @@ function App() {
         { answer:'Van',
           correct: false       
         }
-        ],
+        ]},{
         id:6,
         question:'Filika, genellikle hangi araçta bulunur ?',
         answers:[{
@@ -118,7 +122,7 @@ function App() {
         { answer:'Metrobüs',
           correct: false       
         }
-        ],
+        ]},{
         id:7,
         question:'Çevresi şeritle kaplı,içi boş bir ters üçgen trafikte ne anlama gelir?',
         answers:[{
@@ -134,7 +138,7 @@ function App() {
         { answer:'Yol ver',
           correct: true       
         }
-        ],
+        ]},{
         id:8,
         question:'Çok üzülen birinin, halk arasında burnunun neresinin sızladığı söylenir?',
         answers:[{
@@ -150,7 +154,7 @@ function App() {
         { answer:'Delik',
           correct: false       
         }
-        ],
+        ]},{
         id:9,
         question:'"Bulutların üzerinde gezmek" sözü hangisini ifade etmek için kullanılır?',
         answers:[{
@@ -166,7 +170,7 @@ function App() {
         { answer:'Şaşkınlık',
           correct: false       
         }
-        ],
+        ]},{
         id:10,
         question:'Eğer karşınızdaki ekranda "sezon finali" yazıyorsa hangisini izliyorsunuz demektir?',
         answers:[{
@@ -186,23 +190,36 @@ function App() {
 
       }
     ];
-
+  useEffect(() =>{
+    questionNum > 1 && setEarned(moneyPyramid.find( m => m.id === questionNum -1).reward)
+  },[moneyPyramid,questionNum])
   return (
     <div className="App">
       <div className="main">
-        <div className="top">
-          <div className="timer">30</div>
+        {stop ? 
+        (<h1 className="end-text">You earned: {earned}</h1>) : (
+          <>
+          <div className="top">
+          <div className="timer">
+            <Timer
+          setStop = {setStop}
+          questionNum = {questionNum}
+            />  
+          </div>
         </div>
         <div className="bottom">
           <div>
           <Questions
           data = {data}
-          setTİmeOut = {setTİmeOut}
+          setStop = {setStop}
           questionNum = {questionNum}
           setQuestionNum = {setQuestionNum}
           />
           </div>
         </div>
+          </> 
+        )}
+        
       </div>
       <div className="money-pyramid">
         <ul className="money-list">
