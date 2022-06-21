@@ -18,9 +18,9 @@ export default function Questions({
   const [className, setClassname] = useState("answer");
 
   const[play] = useSound(src_sounds_play);
-  // const[correct] = useSound(src_sounds_correct);
-  // const[wrong] = useSound(src_sounds_wrong);
-  // const[wait] = useSound(src_sounds_wait);
+  const[correct] = useSound(src_sounds_correct);
+  const[wrong] = useSound(src_sounds_wrong);
+  const[wait] = useSound(src_sounds_wait);
 
   useEffect(() => {
     play();
@@ -36,12 +36,19 @@ export default function Questions({
     setSelectedAnswer(a);
     setClassname("answer active");
     delay(3000, () => setClassname(a.correct ? "answer correct" : "answer wrong"));
-    delay(6000, () => {
+    delay(5000, () => {
       if(a.correct){
-        setQuestionNum((prev) => prev +1);
-        setSelectedAnswer(null); 
+        correct();
+        delay(1000,() => {
+          setQuestionNum((prev) => prev +1);
+          setSelectedAnswer(null); 
+        });
       }else{
-        setStop(true);
+        wrong();
+        delay(1000,() => {
+          setStop(true);
+        });
+        
       }
     });
     };

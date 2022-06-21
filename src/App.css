@@ -24,12 +24,14 @@
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    border: solid 5px #fff;
-    font-size: 30px;
+    padding: 20px;
+    border: solid 7px #cc9703;
+    font-size: 50px;
     font-weight:bold;
     position: absolute;
+    top: 180px;
     bottom: 10px;
-    left: 70px;
+    left: 500px;
 }
 .bottom{
     height:50%;
@@ -55,6 +57,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background:linear-gradient(to top,rgba(0, 0, 0, 0.716), rgba(0, 8, 77, 0.903)) ,url("./assets/img/pyramid-bg.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-left: 7px solid #000;
 }
 .money-list{
     list-style: none;
@@ -64,7 +70,7 @@
     font-weight: 300;
 }
 .active{
-    background-color: rgba(255, 166, 0, 0.575);
+    background-color: rgb(255, 166, 0);
     padding-left: 10px;
     padding-right: 250px;
     border-radius: 5px;

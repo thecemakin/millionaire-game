@@ -1,0 +1,41 @@
+.bg{
+    
+    background: linear-gradient(to top,rgb(0, 0, 0), rgba(0, 8, 77, 0.7)) ,url(".././assets/img/start-bg.jpg");
+    width: 100%;
+}
+.start{
+    width: 250px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    top: 350px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+}
+.start-input{
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    outline: none;
+}
+.start-button{
+    width: 75%;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    background:rgb(255, 166, 0); 
+    color: rgb(0, 0, 0);
+}

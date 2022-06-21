@@ -2,10 +2,12 @@ import { useEffect, useState,useMemo } from "react";
 import "./app.css";
 import Questions from "./components/Questions";
 import Timer from "./components/Timer";
+import Start from "./components/Start";
 
 
 function App() {
   
+  const [username, setUsername] = useState(null);
   const [questionNum, setQuestionNum] = useState(1);
   const [stop, setStop] = useState(false);
   const [earned, setEarned] = useState("$ 0");
@@ -195,7 +197,10 @@ function App() {
   },[moneyPyramid,questionNum])
   return (
     <div className="App">
-      <div className="main">
+      
+      {username ? (
+        <>
+        <div className="main">
         {stop ? 
         (<h1 className="end-text">You earned: {earned}</h1>) : (
           <>
@@ -230,6 +235,9 @@ function App() {
           )}
         </ul>
       </div>
+        </>
+      ) : <Start setUsername = {setUsername}/>}
+      
     </div>
   );
 }

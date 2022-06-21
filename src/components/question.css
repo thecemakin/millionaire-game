@@ -37,14 +37,14 @@
    background: mediumblue;
 }
 .answer.active{
-   background: rgba(255, 166, 0, 0.575);
+   background: rgb(255, 166, 0);
 }
 .answer.correct{
    animation: correct 3s ease forwards;
 }
 @keyframes correct{
    0%,22%,42%{
-      background: rgba(255, 166, 0, 0.575);
+      background: rgb(255, 166, 0);
    }
    20%,40%,60%{
       background: linear-gradient(#28075e,black);
@@ -59,7 +59,7 @@
 }
 @keyframes wrong{
    0%,22%,42%{
-      background: rgba(255, 166, 0, 0.575);
+      background: rgb(255, 166, 0);
    }
    20%,40%,60%{
       background: linear-gradient(#28075e,black);
