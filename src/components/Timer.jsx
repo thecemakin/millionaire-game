@@ -1,21 +1,21 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
 
-export default function Timer({setStop,questionNum}) {
+export default function Timer({ setStop, questionNum }) {
     const [timer, setTimer] = useState(30);
 
     useEffect(() => {
-        if(timer === 0) return setStop(true);
+        if (timer === 0) return setStop(true);
         const interval = setInterval(() => {
-            setTimer((prev) => prev -1);
-        },1000);
-        
+            setTimer((prev) => prev - 1);
+        }, 1000);
+
         return () => clearInterval(interval);
-    },[setStop,timer]);
+    }, [setStop, timer]);
 
     useEffect(() => {
         setTimer(30);
-    },[questionNum])
+    }, [questionNum])
 
     return timer;
 }
